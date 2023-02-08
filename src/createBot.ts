@@ -41,7 +41,8 @@ export const createBot: ICreateBot = (fromPhoneNumberId, accessToken, opts) => {
       PubSub.subscribe(event, (_, data) => cb(data));
     },
 
-    sendText: (to, text, options) => sendRequest<TextMessage>({
+    sendText: (to, text, options) => {
+      const req = {
       ...payloadBase,
       to,
       type: 'text',
@@ -49,7 +50,10 @@ export const createBot: ICreateBot = (fromPhoneNumberId, accessToken, opts) => {
         body: text,
         preview_url: options?.preview_url,
       },
-    }),
+    }
+      if(options.context) req.context = options.context
+      return sendRequest<TextMessage>(req)
+    },
     sendMessage(to, text, options) {
       return this.sendText(to, text, options);
     },
