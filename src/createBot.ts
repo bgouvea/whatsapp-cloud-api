@@ -9,6 +9,10 @@ import {
 import { sendRequestHelper } from './sendRequestHelper';
 import { ExpressServer, startExpressServer } from './startExpressServer';
 
+interface ContextBase {
+  message_id?: '';
+}
+
 interface PaylodBase {
   messaging_product: 'whatsapp';
   recipient_type: 'individual';
@@ -42,16 +46,16 @@ export const createBot: ICreateBot = (fromPhoneNumberId, accessToken, opts) => {
     },
 
     sendText: (to, text, options) => {
-      const req = {
-      ...payloadBase,
+      const req: TextMessage  = {
+      ...payloadBase, 
       to,
       type: 'text',
       text: {
         body: text,
         preview_url: options?.preview_url,
-      },
+      }
     }
-      if(options.context) req.context = options.context
+      if(options && options.context) req.context = options.context  
       return sendRequest<TextMessage>(req)
     },
     sendMessage(to, text, options) {

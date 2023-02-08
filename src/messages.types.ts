@@ -6,6 +6,7 @@ interface Message {
   messaging_product: 'whatsapp';
   recipient_type: 'individual';
   to: string;
+  context?: Context; 
 }
 
 interface ContactName {
@@ -223,6 +224,11 @@ export interface Text {
   preview_url?: boolean;
 }
 
+export interface Context {
+  message_id?: string;
+}
+
+
 export interface AudioMessage extends Message {
   type: 'audio';
   audio: Media;
@@ -266,6 +272,7 @@ export interface TemplateMessage extends Message {
 export interface TextMessage extends Message {
   type: 'text';
   text: Text;
+  context?: Context;
 }
 
 export interface VideoMessage extends Message {

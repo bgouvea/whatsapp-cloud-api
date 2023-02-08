@@ -1,6 +1,6 @@
 import express, { Application } from 'express';
 import { Server } from 'http';
-import { Contact, InteractiveHeader, TemplateComponent } from './messages.types';
+import { Contact, InteractiveHeader, TemplateComponent, Context } from './messages.types';
 import { SendMessageResult } from './sendRequestHelper';
 import { FreeFormObject } from './utils/misc';
 import { PubSubEvent } from './utils/pubSub';
@@ -26,6 +26,7 @@ export interface Bot {
 
   sendText: (to: string, text: string, options?: {
     preview_url?: boolean;
+    context?: Context;
   }) => Promise<SendMessageResult>;
   sendMessage: (to: string, text: string, options?: {
     preview_url?: boolean;
