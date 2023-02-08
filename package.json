@@ -1,5 +1,5 @@
 {
-  "name": "@agilize/whatsapp-cloud-api",
+  "name": "@brunohenriquebh/whatsapp-cloud-api",
   "version": "0.2.6",
   "description": "Node.js library for creating bots and sending/receiving messages using the Whatsapp Cloud API",
   "main": "dist/index.js",
